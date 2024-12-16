@@ -1,0 +1,11 @@
+# Realizado por David Douglas
+import datetime
+
+data_inicial = datetime.date(1968, 4, 27)
+hoje = datetime.date.today()
+contador = (hoje - data_inicial).days
+dia_da_semana = hoje.strftime('%A, %d %B %Y')
+
+print("Data inicial:", data_inicial)
+print("Na presente data,", hoje, "fazem cerca de", contador, "dias")
+print("Hoje é:", dia_da_semana)
