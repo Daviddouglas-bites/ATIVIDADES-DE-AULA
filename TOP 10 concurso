@@ -77,21 +77,26 @@ dados = '''0836614-4;YUARA SOARES SILVA;2,25;3;1,5;7,5
 0758980-8;ZULMARA ROMANO GUERREIRO LIRA CABRAL;5,25;3;2,25;21,25
 0625370-9;ZULMIRA GOMES DE ARAUJO;1,5;3,75;0,75;8,75'''
 dados_tratados = []
+dados = dados.split("\n")  # Quebrar a string em linhas
+
 for candidato in dados:
     if candidato.strip():  # Ignorar linhas vazias
         candidato = candidato.split(";")
         for pos in range(2, 6):
-            candidato[pos] = float(candidato[pos].replace(",", ".")) 
-        candidato.append(sum(candidato[2:5])) 
-        dados_tratados=(candidato)
+            candidato[pos] = float(candidato[pos].replace(",", "."))  # Converter notas para float
+        candidato.append(sum(candidato[2:5]))  # Soma das notas relevantes
+        dados_tratados.append(candidato)  # Adicionar à lista corretamente
 
+# Filtrar os aprovados com nota > 10
 aprovados = list(filter(lambda x: x[6] > 10, dados_tratados))
 
+# Ordenar os aprovados pelo nome 
 aprovados.sort(key=lambda x: x[1])
 
 # Pegar os 10 primeiros aprovados
 top_10 = aprovados[:10]
 
+# Exibir os resultados
 print("Os 10 primeiros aprovados em ordem alfabética são:")
 for aprovado in top_10:
     print(f"{aprovado[1]} - Nota final: {aprovado[6]:.2f}")
