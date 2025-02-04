@@ -1,0 +1,33 @@
+import yfinance as yf
+import matplotlib.pyplot as plt
+from pprint import pprint
+
+ticker = 'PETR4.SA'
+df = yf.download(ticker, period='7mo')
+
+# Dicionário dados
+dados = df['Close'].to_dict()
+datas = list(dados.keys())
+precos = list(dados.values())
+
+# Calcular a média dos preços de fechamento
+media_precos = sum(precos) / len(precos)
+
+# Criar o gráfico
+plt.plot(datas, precos, color="yellow")
+
+# Adicionar linha da média no gráfico
+plt.axhline(y=media_precos, color='red', linestyle='--', label=f'Média: R$ {media_precos:.2f}')
+
+# Configurações do gráfico
+plt.title(f"Histórico de Preços - {ticker}")
+plt.xlabel("Data")
+plt.ylabel("Preço (R$)")
+plt.xticks(rotation=45)
+plt.grid(True)
+
+# Adicionar a legenda
+plt.legend()
+
+# Mostrar o gráfico
+plt.show()
