@@ -1,0 +1,19 @@
+import matplotlib.pyplot as plt
+
+# Dados para o gráfico onde podemos alterarar para ser um input
+x = [0, 1, 2, 3, 4, 5]
+y = [0, 1, 4, 9, 16, 25]
+
+# Criando o gráfico de linha, questões esteticas do código 
+plt.plot(x, y, label="y = x^2", color='blue', marker='o')
+
+# Adicionando título e rótulos aos eixos
+plt.title("Exemplo de Gráfico Simples")
+plt.xlabel("X")
+plt.ylabel("Y")
+
+# Adicionando legenda
+plt.legend()
+
+# Exibindo o gráfico
+plt.show()
