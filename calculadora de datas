@@ -1,11 +1,24 @@
 # Realizado por David Douglas
 import datetime
 
+# Definindo a data inicial
 data_inicial = datetime.date(1968, 4, 27)
-hoje = datetime.date.today()
-contador = (hoje - data_inicial).days
-dia_da_semana = hoje.strftime('%A, %d %B %Y')
 
-print("Data inicial:", data_inicial)
-print("Na presente data,", hoje, "fazem cerca de", contador, "dias")
-print("Hoje é:", dia_da_semana)
+# Obtendo a data de hoje
+data_hoje = datetime.date.today()
+
+# Calculando a diferença de dias entre as datas
+diferenca_dias = (data_hoje - data_inicial).days
+
+# Contando os sábados diretamente
+sabados_contados = sum(1 for i in range(diferenca_dias + 1) 
+                       if (data_inicial + datetime.timedelta(days=i)).weekday() == 5)
+
+# Formatando a data para exibição em PT-BR
+data_hoje_formatada = data_hoje.strftime('%A, %d de %B de %Y')
+
+# Exibindo os resultados
+print(f"Data inicial: {data_inicial.strftime('%d/%m/%Y')}")
+print(f"Desde {data_inicial.strftime('%d/%m/%Y')} até hoje ({data_hoje.strftime('%d/%m/%Y')}), passaram-se aproximadamente {diferenca_dias} dias.")
+print(f"Hoje é {data_hoje_formatada}")
+print(f"Se passaram {sabados_contados} sábados até a presente data.")
