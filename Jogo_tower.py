@@ -2,14 +2,19 @@ import pygame, sys, random
 
 # Inicialização do Pygame
 pygame.init()
+altura = 1000
+largura = 800
 gameDisplay = pygame.display.set_mode((1000, 800))
 pygame.display.set_caption('Torre da escalada')
+tela_de_fundo = pygame.image.load('Castelo.jpg').convert()
+tela_de_fundo = pygame.transform.scale(tela_de_fundo,(altura, largura))
 
 # Carregamento das imagens
 cavaleiroImg = pygame.image.load('cv.jpg')
 cavaleiroW = 50
 cavaleiroH = 50
 cavaleiroImg = pygame.transform.scale(cavaleiroImg, (cavaleiroW, cavaleiroH))
+
 vidaImg = pygame.image.load('cc.jpeg')
 vidaImg = pygame.transform.scale(vidaImg, (55, 55))
 
@@ -111,12 +116,11 @@ while not FIM and vidas > 0 and fase <= 5:
         cavaleiroY = 700
         plataformas = cria_plataformas()
         
-    pygame.display.update()
+    elif vidas == 0:
+        pygame.quit()
+        pygame.display.update()
+        gameDisplay.fill(PRETO)
+        pygame.time.delay(120)
+    
 
 pygame.quit()
-PRETO = (0,0,0)
-#eli vidas = 0
-#gameDisplay.fill(PRETO)
-
-#pygame.quit()
-#exit()
